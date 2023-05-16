@@ -2,6 +2,13 @@ import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import { Device } from "../types/device";
 import DevicePage from "../../components/devicePage";
+import FAQ from "../../components/faq";
+
+interface faqList {
+  id: number;
+  question: string;
+  answer: string;
+}
 
 const RingCamera = () => {
   const router = useRouter();
@@ -17,7 +24,30 @@ const RingCamera = () => {
     fetchDeviceData();
   }, [device]);
 
-  return <div>{deviceData && <DevicePage device={deviceData} />}</div>;
+  const faq = deviceData?.usage?.faq?.query_response
+    .split("\n\n")
+    .map((faq, index) => {
+      const regex = /(\d+\.)\s(.*)\nA:\s(.*)\s\((.*)\)/;
+      const match = regex.exec(faq);
+      if (match) {
+        const question = match[2];
+        const answer = match[3];
+        return { id: index, question, answer };
+      }
+      return null;
+    })
+    .filter(Boolean) as faqList[];
+
+  return (
+    <div>
+      {deviceData && (
+        <>
+          <DevicePage device={deviceData} />
+          <FAQ questions={faq} />
+        </>
+      )}
+    </div>
+  );
 };
 
 export default RingCamera;
