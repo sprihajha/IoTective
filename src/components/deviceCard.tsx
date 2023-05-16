@@ -20,10 +20,10 @@ const DeviceCard = ({ device }: { device: Device }) => {
         whileTap={{ scale: 0.95 }}
         onHoverStart={() => setShowSvg(true)}
         onHoverEnd={() => setShowSvg(false)}
-        className={`relative flex flex-col items-center justify-center rounded-xl shadow-lg p-8 m-4 transition-all duration-300 ease-in-out h-64 w-56 ${
-          showSvg ? "bg-white" : "bg-[#c1e693]"
+        className={`relative flex flex-col items-center justify-center rounded-xl shadow-lg p-8 m-4 transition-all duration-300 ease-in-out h-72 w-72 ${
+          showSvg ? "bg-[#756bb1]" : "bg-[#efedf5]"
         }`}
-        style={{ boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.1)" }}
+        style={{ boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.3)" }}
       >
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -31,8 +31,8 @@ const DeviceCard = ({ device }: { device: Device }) => {
           transition={{ duration: 0.5 }}
           className="relative mb-4 bg-white rounded-lg p-2"
           style={{
-            height: "250px",
-            width: "200px",
+            height: "300px",
+            width: "275px",
             boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.1)",
           }}
         >

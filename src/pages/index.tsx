@@ -14,37 +14,37 @@ const devices = [
   {
     title: "Roomba",
     image: roombaImage,
-    link: "/devices/roomba",
+    link: "/devices/Roomba",
     category: "Vacuum",
   },
   {
     title: "Echo Dot",
     image: echoDotImage,
-    link: "/devices/echo-dot",
+    link: "/devices/Echo-dot",
     category: "Speaker",
   },
   {
     title: "Ring Camera",
     image: ringImage,
-    link: "/devices/ring-camera",
+    link: "/devices/Ring-camera",
     category: "Camera",
   },
   {
     title: "Roku Streaming",
     image: rokuImage,
-    link: "/devices/roku",
+    link: "/devices/Roku",
     category: "TV",
   },
   {
     title: "Nest Thermostat",
     image: nestImage,
-    link: "/devices/nest-thermostat",
+    link: "/devices/Nest-thermostat",
     category: "Temp",
   },
   {
     title: "Philips Hue",
     image: hueImage,
-    link: "/devices/philips-hue",
+    link: "/devices/Philips-hue",
     category: "Light",
   },
 ];
@@ -53,7 +53,7 @@ const Home = () => {
   return (
     <>
       <motion.div
-        className="bg-[#ccebc5] min-h-screen"
+        className="bg-[#bcbddc] min-h-screen"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
@@ -65,7 +65,7 @@ const Home = () => {
           transition={{ delay: 0.2 }}
         >
           <motion.h1
-            className="text-5xl text-center font-bold text-decbe4 mb-4"
+            className="text-8xl text-center font-black text-indigo-950 mb-4"
             initial={{ y: -20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.4 }}
@@ -73,7 +73,7 @@ const Home = () => {
             IoTective
           </motion.h1>
           <motion.p
-            className="text-xl text-center text-gray-800 mb-8"
+            className="text-xl text-center font-bold text-gray-800 mb-8"
             initial={{ y: -20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.6 }}
@@ -89,7 +89,7 @@ const Home = () => {
             />
           </motion.p>
           <motion.h2
-            className="text-2xl text-center font-bold text-gray-800 mb-4"
+            className="text-3xl text-center font-bold text-gray-800 mb-4"
             initial={{ y: -20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.8 }}
