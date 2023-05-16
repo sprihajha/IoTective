@@ -1,57 +1,63 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
-interface Props {
-  faqs: { question: string; answer: string }[];
+interface Question {
+  id: number;
+  question: string;
+  answer: string;
 }
 
-const FAQ = ({ faqs }: Props) => {
-  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+interface Props {
+  questions: Question[];
+}
 
-  const toggleFAQ = (index: number) => {
-    if (activeIndex === index) {
-      setActiveIndex(null);
-    } else {
-      setActiveIndex(index);
-    }
-  };
-
+const FAQ = ({ questions }: Props) => {
+  const [expandedQuestionId, setExpandedQuestionId] = useState<number>(0);
+  if (!questions || questions.length === 0) {
+    return <div>No FAQ available.</div>;
+  }
   return (
-    <div className="bg-white rounded-xl shadow-lg p-6 mb-6">
-      <h2 className="text-2xl font-bold mb-4">FAQ</h2>
-      {faqs.map((faq, index) => (
-        <div key={index}>
-          <motion.div
-            className="flex items-center cursor-pointer"
-            onClick={() => toggleFAQ(index)}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
+    <div>
+      <motion.h1
+        className="text-2xl font-bold text-indigo-950 mb-2"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+      >
+        Frequently Asked Questions
+      </motion.h1>
+      {questions?.map((question) => (
+        <motion.div
+          key={question?.id}
+          className="my-2 p-2 bg-[#bcbddc] rounded-md"
+          onClick={() =>
+            setExpandedQuestionId(
+              expandedQuestionId === question?.id ? 0 : question?.id
+            )
+          }
+        >
+          <motion.h3
+            className="font-bold"
+            animate={{
+              fontWeight: expandedQuestionId === question?.id ? 700 : 400,
+            }}
           >
-            <h3 className="text-lg font-bold mr-2">{faq.question}</h3>
-            <svg
-              className="fill-current text-gray-500"
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-            >
-              <path
-                fillRule="evenodd"
-                d="M6.293 7.293a1 1 0 0 1 1.414 0L12 11.586l4.293-4.293a1 1 0 1 1 1.414 1.414L13.414 13l4.293 4.293a1 1 0 1 1-1.414 1.414L12 14.414l-4.293 4.293a1 1 0 0 1-1.414-1.414L10.586 13 6.293 8.707a1 1 0 0 1 0-1.414z"
-              />
-            </svg>
-          </motion.div>
-          {activeIndex === index && (
-            <motion.p
-              className="mt-2"
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              transition={{ duration: 0.2 }}
-            >
-              {faq.answer}
-            </motion.p>
-          )}
-        </div>
+            {question?.question}
+          </motion.h3>
+          <AnimatePresence>
+            {expandedQuestionId === question?.id && (
+              <motion.div
+                key="content"
+                className="mt-2"
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: "auto" }}
+                exit={{ opacity: 0, height: 0 }}
+                transition={{ duration: 0.5, ease: "easeInOut" }}
+              >
+                <p>{question.answer}</p>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </motion.div>
       ))}
     </div>
   );
