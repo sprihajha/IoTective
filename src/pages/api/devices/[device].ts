@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { devices } from "../../data/devices";
+import { devices } from "../../../data/devices";
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   const { device } = req.query;

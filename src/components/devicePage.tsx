@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
-import { Device } from "../pages/types/device";
+import { Device } from "../types/device";
 import Link from "next/link";
 
 interface Props {

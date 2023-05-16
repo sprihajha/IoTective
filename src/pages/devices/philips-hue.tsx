@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
-import { Device } from "../types/device";
+import { Device } from "../../types/device";
 import DevicePage from "../../components/devicePage";
 import FAQ from "../../components/faq";
 
