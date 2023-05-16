@@ -7,8 +7,7 @@ import ringImage from "../../public/ring_camera.png";
 import nestImage from "../../public/nest_thermostat.png";
 import hueImage from "../../public/philips_hue.png";
 import rokuImage from "../../public/roku.png";
-import { Cursor, Typewriter, useTypewriter } from "react-simple-typewriter";
-import { useState, useEffect } from "react";
+import { Typewriter } from "react-simple-typewriter";
 
 const devices = [
   {
