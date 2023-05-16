@@ -2,6 +2,7 @@ import Image, { StaticImageData } from "next/image";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { useState } from "react";
+import React from "react";
 
 interface Device {
   title: string;
@@ -10,11 +11,12 @@ interface Device {
   link: string;
 }
 
-const DeviceCard = ({ device }: { device: Device }) => {
+// eslint-disable-next-line react/display-name
+const DeviceCard = React.forwardRef(({ device }: { device: Device }) => {
   const [showSvg, setShowSvg] = useState(false);
 
   return (
-    <Link href={device.link}>
+    <Link href={device.link} passHref legacyBehavior>
       <motion.div
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
@@ -94,6 +96,6 @@ const DeviceCard = ({ device }: { device: Device }) => {
       </motion.div>
     </Link>
   );
-};
+});
 
 export default DeviceCard;
